@@ -135,10 +135,14 @@ import PageTemplate from "./general/PageTemplate";
 import PageHeader from "./general/PageHeader";
 
 export default {
-  name: "home",
+  name: "post",
   components: {
     PageTemplate,
     PageHeader
+  },
+  beforeRouteUpdate(to, from, next) {
+    alert(to.params.postId);
+    next();
   }
 };
 </script>

@@ -17,16 +17,28 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <router-link :to="{ name: 'my-home' }" class="nav-link"
+              >Home</router-link
+            >
+            <!--            <a  href="#" @click="$emit('set-page', 'home')">Home</a>-->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <router-link :to="{ name: 'about' }" class="nav-link"
+              >About</router-link
+            >
+            <!--            <a class="nav-link" href="#" @click="$emit('set-page', 'about')">About</a>-->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sample Post</a>
+            <router-link :to="{ name: 'post' }" class="nav-link"
+              >Sample Post</router-link
+            >
+            <!--            <a class="nav-link" href="#" @click="$emit('set-page', 'post')">Sample Post</a>-->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <router-link :to="{ name: 'contact' }" class="nav-link"
+              >Contact</router-link
+            >
+            <!--            <a class="nav-link" href="#" @click="$emit('set-page', 'contact')">Contact</a>-->
           </li>
         </ul>
       </div>

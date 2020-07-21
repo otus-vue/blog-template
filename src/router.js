@@ -1,26 +1,61 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "my-home",
+      component: () => import("./views/Home")
     },
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      alias: "/a",
+      component: () => import("./views/About")
+    },
+    {
+      path: "/posts/:postId",
+      name: "post",
+      component: () => import("./views/Post")
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: () => import("./views/Contact")
+    },
+    {
+      path: "/c",
+      redirect: "/contact"
+    },
+    {
+      path: "/user/:userId",
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+        import(/* webpackChunkName: "user" */ "./components/Test"),
+      props: true,
+      children: [
+        {
+          path: "profile",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./components/SubTest1")
+        },
+        {
+          path: "posts",
+          component: () =>
+            import(/* webpackChunkName: "user" */ "./components/SubTest2")
+        }
+      ]
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
+  next();
+});
+
+export default router;
